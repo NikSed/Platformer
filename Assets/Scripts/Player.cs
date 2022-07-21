@@ -15,7 +15,15 @@ public class Player : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
+    {
+        /*if(_contactPoint2D.normalImpulse > 1f)
+        {
+            Kill();
+        }*/
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -30,7 +38,7 @@ public class Player : MonoBehaviour
 
     private void Kill()
     {
-        _rigidbody2D.velocity = Vector2.zero;
+        //_rigidbody2D.velocity = Vector2.zero;
         _playerSpawner.Spawn(0.25f);
     }
 }
