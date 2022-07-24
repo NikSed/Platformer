@@ -10,7 +10,7 @@ public class RockHead : MonoBehaviour
 
     private float _returningSpeed;
 
-    private Vector3 _startPos;
+    private Vector3 _startPoint;
     private Vector3 _smashPoint;
 
     private bool _isReturning = false;
@@ -20,7 +20,7 @@ public class RockHead : MonoBehaviour
     void Start()
     {
         _returningSpeed = _attackSpeed / 500f;
-        _startPos = transform.localPosition;
+        _startPoint = transform.localPosition;
         _smashPoint = GetSmashPoint();
     }
 
@@ -38,8 +38,8 @@ public class RockHead : MonoBehaviour
             return;
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(_startPos, GetChosenDirection());
-        Debug.DrawLine(_startPos, hit.point, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(_startPoint, GetChosenDirection());
+        Debug.DrawLine(_startPoint, hit.point, Color.red);
 
         if (hit.collider.CompareTag("Player"))
         {
@@ -80,12 +80,12 @@ public class RockHead : MonoBehaviour
 
     private void Return()
     {
-        if (transform.localPosition == _startPos)
+        if (transform.localPosition == _startPoint)
         {
             _isReturning = false;
         }
 
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, _startPos, _returningSpeed);
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, _startPoint, _returningSpeed);
     }
 
     //Направление движения ловушки
@@ -151,7 +151,7 @@ public class RockHead : MonoBehaviour
     //Точка куда бьет ловушка
     private Vector3 GetSmashPoint()
     {
-        RaycastHit2D hit = Physics2D.Raycast(_startPos, GetChosenDirection());
+        RaycastHit2D hit = Physics2D.Raycast(_startPoint, GetChosenDirection());
 
         if (hit.collider == null)
         {

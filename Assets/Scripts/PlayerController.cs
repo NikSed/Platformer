@@ -1,13 +1,16 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1f;
     [SerializeField] private float _jumpForce = 16f;
     [SerializeField] private float _maxJumpTime = 0.5f;
-    [SerializeField] private float _currentJumpTime;
     [SerializeField] private int _maxJumpCount = 1;
 
+    private float _currentJumpTime;
     private int _currentJumpCount;
     private bool _isJumping;
     private Animator _animator;
@@ -102,7 +105,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             _currentJumpCount = 0;
-            GameObject.FindObjectOfType<MobileJumpButton>().SetJumpingCount();
+            FindObjectOfType<MobileJumpButton>().SetJumpingCount();
         }
     }
 }
