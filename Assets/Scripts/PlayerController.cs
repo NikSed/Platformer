@@ -4,11 +4,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1f;
     [SerializeField] private float _jumpForce = 16f;
-    [SerializeField] private int _maxJumpCount = 1;
     [SerializeField] private float _maxJumpTime = 0.5f;
+    [SerializeField] private float _currentJumpTime;
+    [SerializeField] private int _maxJumpCount = 1;
 
     private int _currentJumpCount;
-    [SerializeField] private float _currentJumpTime;
     private bool _isJumping;
     private Animator _animator;
     private Rigidbody2D _rigidBody2D;
@@ -94,12 +94,7 @@ public class PlayerController : MonoBehaviour
 
         _animator.SetFloat("InputX", Mathf.Abs(inputValue));
 
-        float velocity = _rigidBody2D.velocity.y;
-
-        if (velocity != 0)
-        {
-            _animator.SetFloat("Velocity", velocity);
-        }
+        _animator.SetFloat("Velocity", _rigidBody2D.velocity.y);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -110,5 +105,4 @@ public class PlayerController : MonoBehaviour
             GameObject.FindObjectOfType<MobileJumpButton>().SetJumpingCount();
         }
     }
-
 }
