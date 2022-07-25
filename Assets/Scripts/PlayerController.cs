@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (_currentJumpTime < _maxJumpTime && _currentJumpCount <= _maxJumpCount)
+        if (_currentJumpTime < _maxJumpTime && _currentJumpCount <= _maxJumpCount && _rigidBody2D.velocity.y < _jumpForce * 5)
         {
             _rigidBody2D.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
         }
