@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e92d3237e8e4d454fb8c79d4b78943d4
+guid: 3e2ded0b90a5f22458506fd2076efd3a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,169 +128,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump (28x28)_0
+      name: On (38x38)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 28
-        height: 28
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7a5daa9b04eff64190bc2611f907fea
-      internalID: -1342067136
+      spriteID: a659ba7601991c7479e28764ea4589fa
+      internalID: 1409302167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump (28x28)_1
+      name: On (38x38)_1
       rect:
         serializedVersion: 2
-        x: 28
+        x: 38
         y: 0
-        width: 28
-        height: 28
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e0696d37a795ae4f969a501334d895c
-      internalID: 1436239837
+      spriteID: bc2669c91151634408a0b0c130b83f32
+      internalID: 936606989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump (28x28)_2
+      name: On (38x38)_2
       rect:
         serializedVersion: 2
-        x: 56
+        x: 76
         y: 0
-        width: 28
-        height: 28
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5babecaef0e38be4783a552cd7308f7b
-      internalID: 1573358416
+      spriteID: 24cf9a6a1b49cbc49aa7788161a8bfab
+      internalID: 1201789208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump (28x28)_3
+      name: On (38x38)_3
       rect:
         serializedVersion: 2
-        x: 84
+        x: 114
         y: 0
-        width: 28
-        height: 28
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 790b7b7defc5a4a43bb5ce1299b839b8
-      internalID: 688115427
+      spriteID: d8dcc815fc086c943a05603691be2102
+      internalID: 526893232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump (28x28)_4
+      name: On (38x38)_4
       rect:
         serializedVersion: 2
-        x: 112
+        x: 152
         y: 0
-        width: 28
-        height: 28
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d413d071a2187149b15b0dca56ad3ea
-      internalID: -1009579730
+      spriteID: dbe6523e41e16a345ad0e6514ed93616
+      internalID: -320344840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump (28x28)_5
+      name: On (38x38)_5
       rect:
         serializedVersion: 2
-        x: 140
+        x: 190
         y: 0
-        width: 28
-        height: 28
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 422bf6f6400c3a8439f5988e1aee7916
-      internalID: 1335572998
+      spriteID: 08debd7f7e84dc84d8ece3970fd16538
+      internalID: 1054894670
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump (28x28)_6
+      name: On (38x38)_6
       rect:
         serializedVersion: 2
-        x: 168
+        x: 228
         y: 0
-        width: 28
-        height: 28
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e166f4085178a3549be0a5f4c5f99353
-      internalID: -1667822678
+      spriteID: 875b19f62c9e2ef4db271d985740d351
+      internalID: 2033455382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump (28x28)_7
+      name: On (38x38)_7
       rect:
         serializedVersion: 2
-        x: 196
+        x: 266
         y: 0
-        width: 28
-        height: 28
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d07b46c3aae5274eb0127413a9ca914
-      internalID: -527107914
+      spriteID: d52f3d33c9956ab48adf2bfefcc5812a
+      internalID: 356142330
       vertices: []
       indices: 
       edges: []
@@ -306,14 +306,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Jump (28x28)_1: 1436239837
-      Jump (28x28)_7: -527107914
-      Jump (28x28)_4: -1009579730
-      Jump (28x28)_5: 1335572998
-      Jump (28x28)_3: 688115427
-      Jump (28x28)_0: -1342067136
-      Jump (28x28)_2: 1573358416
-      Jump (28x28)_6: -1667822678
+      On (38x38)_7: 356142330
+      On (38x38)_3: 526893232
+      On (38x38)_4: -320344840
+      On (38x38)_6: 2033455382
+      On (38x38)_0: 1409302167
+      On (38x38)_5: 1054894670
+      On (38x38)_2: 1201789208
+      On (38x38)_1: 936606989
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

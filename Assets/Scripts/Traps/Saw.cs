@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Saw : MonoBehaviour
 {
-    [SerializeField] private float _zAngleRotation = 2f;
     [SerializeField] private float _moveSpeed = 0.01f;
     [SerializeField] private List<Vector3> _movePoints;
     [SerializeField] private bool _isRepeat;
@@ -35,8 +34,6 @@ public class Saw : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Rotate(0, 0, _zAngleRotation);
-
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, _targetMovePoint, _moveSpeed);
 
         if (transform.localPosition == _targetMovePoint)
