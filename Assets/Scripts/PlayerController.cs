@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         float inputKeybordHorizontal = Input.GetAxisRaw("Horizontal");
         float inputJoystickHorizontal = _joystick.Horizontal;
 
-        Move(inputKeybordHorizontal, inputJoystickHorizontal);
+        Move(inputKeybordHorizontal + inputJoystickHorizontal);
 
         if (_isJumping)
         {
@@ -53,8 +53,17 @@ public class PlayerController : MonoBehaviour
             _currentJumpTime = 0;
             _isJumping = false;
         }
-
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.isTrigger || collision.CompareTag("Platform"))
+        {
+            _currentJumpCount = 0;
+            FindObjectOfType<MobileJumpButton>().SetJumpingCount();
+        }
+    }
+
     private void Initialize()
     {
         _animator = GetComponent<Animator>();
@@ -76,6 +85,7 @@ public class PlayerController : MonoBehaviour
             _rigidBody2D.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
         }
     }
+
     public void Jump(float jumpTime, int jumpCount)
     {
         if (jumpTime < _maxJumpTime && jumpCount <= _maxJumpCount)
@@ -84,10 +94,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Move(float inputKeyboard, float inputJoystick)
+    private void Move(float inputValue)
     {
-        float inputValue = inputKeyboard + inputJoystick;
-
         if (inputValue != 0)
         {
             FlipPlayer(inputValue);
@@ -98,14 +106,5 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat("InputX", Mathf.Abs(inputValue));
 
         _animator.SetFloat("Velocity", _rigidBody2D.velocity.y);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Platform")
-        {
-            _currentJumpCount = 0;
-            FindObjectOfType<MobileJumpButton>().SetJumpingCount();
-        }
     }
 }

@@ -172,4 +172,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bcb850881390544a9f50b2a9fa8b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _springPower: 50
+  _springPower: 70

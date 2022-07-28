@@ -136,7 +136,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.747256, y: 0.74218464}
+  m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
 --- !u!61 &4086711011913555472
 BoxCollider2D:
@@ -151,7 +151,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.57233435}
+  m_Offset: {x: 0, y: -0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -162,7 +162,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.3553313}
+  m_Size: {x: 0.55, y: 0.3}
   m_EdgeRadius: 0
 --- !u!61 &2425157204852778642
 BoxCollider2D:
@@ -177,7 +177,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.57161796}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -188,7 +188,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.35676402}
+  m_Size: {x: 0.55, y: 0.3}
   m_EdgeRadius: 0
 --- !u!61 &3279826509596794566
 BoxCollider2D:
@@ -203,7 +203,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.57828, y: 0}
+  m_Offset: {x: -0.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -214,7 +214,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.34344006, y: 0.6}
+  m_Size: {x: 0.3, y: 0.55}
   m_EdgeRadius: 0
 --- !u!61 &4857318850046505734
 BoxCollider2D:
@@ -229,7 +229,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5726259, y: 0}
+  m_Offset: {x: 0.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -240,7 +240,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.35474825, y: 0.6}
+  m_Size: {x: 0.3, y: 0.55}
   m_EdgeRadius: 0
 --- !u!114 &8246990759906016919
 MonoBehaviour:
@@ -254,11 +254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b52e8bbacface44afa4aa6b5176a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackSpeed: 7
-  _killDistance: 0.8
-  _attackDirection: 0
-  _collidersCheckPlayerHit:
+  _triggers:
   - {fileID: 4086711011913555472}
   - {fileID: 2425157204852778642}
   - {fileID: 3279826509596794566}
   - {fileID: 4857318850046505734}
+  _attackSide: 0
+  _attackSpeed: 4

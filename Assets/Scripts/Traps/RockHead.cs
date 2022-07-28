@@ -2,162 +2,181 @@ using UnityEngine;
 
 public class RockHead : MonoBehaviour
 {
-    [SerializeField] private float _attackSpeed = 5f;
-    [SerializeField] private float _killDistance = 1f;
-    [SerializeField] private AttackDirection _attackDirection;
-    [SerializeField] private Collider2D[] _collidersCheckPlayerHit;
-    private enum AttackDirection { Down, Up, Left, Right }
+    private enum AttackSide { Down, Up, Left, Right };
 
-    private float _returningSpeed;
+    [SerializeField] private BoxCollider2D[] _triggers;
+    [SerializeField] private AttackSide _attackSide;
+    [SerializeField] private float _attackSpeed = 4f;
 
-    private Vector3 _startPoint;
+    private Vector3 _currentAttackDirection;
+    private Vector3 _startPosition;
     private Vector3 _smashPoint;
+    private Vector3 _returnSmashPoint;
 
-    private bool _isReturning = false;
+    private BoxCollider2D _currentTrigger;
+    private BoxCollider2D _reverseCurrentTrigger;
+
     private bool _isAttacking = false;
+    private bool _isReturning = false;
 
-
-    void Start()
+    private void Start()
     {
-        _returningSpeed = _attackSpeed / 500f;
-        _startPoint = transform.localPosition;
-        _smashPoint = GetSmashPoint();
+        _currentTrigger = CurrentTrigger(false);
+        _reverseCurrentTrigger = CurrentTrigger(true);
+
+        _currentAttackDirection = CurrentAttackDirection();
+
+        _startPosition = transform.localPosition;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.localPosition, _currentAttackDirection);
+        _smashPoint = hit.point;
+
+        hit = Physics2D.Raycast(transform.localPosition, -_currentAttackDirection);
+        _returnSmashPoint = hit.point;
+
+        //Debug.Log($"Start: {_startPosition}, Smash: {_smashPoint}, Return smash: {_returnSmashPoint}");
     }
 
     private void FixedUpdate()
     {
-        if (_isReturning)
-        {
-            Return();
-            return;
-        }
-
         if (_isAttacking)
         {
             Attack();
             return;
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(_startPoint, GetChosenDirection());
-        Debug.DrawLine(_startPoint, hit.point, Color.red);
+        if (_isReturning)
+        {
+            Return();
+            return;
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(_startPosition, _currentAttackDirection);
+        Debug.DrawLine(_startPosition, hit.point, Color.red);
+
+        if(hit.collider == null)
+        {
+            Debug.LogWarning("No have smash point. Change attack side or move trap to another point");
+            return;
+        }
 
         if (hit.collider.CompareTag("Player"))
         {
             _isAttacking = true;
         }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform"))
         {
-            _isReturning = true;
-            _isAttacking = false;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Platform"))
-        {
             gameObject.tag = "Platform";
-            DisableTriggers();
+
+            _currentTrigger.enabled = false;
+
+            _isAttacking = false;
+            _isReturning = true;
         }
     }
 
     private void Attack()
     {
-        transform.Translate(_attackSpeed * Time.fixedDeltaTime * GetChosenDirection());
+        transform.Translate(_currentAttackDirection * Time.deltaTime * _attackSpeed);
 
-        float distance = Vector3.Distance(transform.localPosition, _smashPoint);
-
-        if (distance < _killDistance)
+        if (Vector3.Distance(transform.localPosition, _smashPoint) < 0.8f)
         {
-            GetChosenCollider().enabled = true;
+            _currentTrigger.enabled = true;
+
             gameObject.tag = "Enemy";
         }
     }
 
     private void Return()
     {
-        if (transform.localPosition == _startPoint)
+        if (transform.localPosition != _startPosition)
         {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, _startPosition, 0.01f);
+
+            if (Vector3.Distance(transform.localPosition, _returnSmashPoint) < 0.8f)
+            {
+                _reverseCurrentTrigger.enabled = true;
+
+                gameObject.tag = "Enemy";
+            }
+        }
+        else
+        {
+            gameObject.tag = "Platform";
+            _reverseCurrentTrigger.enabled = false;
             _isReturning = false;
         }
-
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, _startPoint, _returningSpeed);
     }
 
-    //Направление движения ловушки
-    private Vector2 GetChosenDirection()
+    private BoxCollider2D CurrentTrigger(bool reverse)
     {
-        Vector2 dir;
+        BoxCollider2D collider;
 
-        switch (_attackDirection)
+        if (!reverse)
         {
-            case AttackDirection.Left:
-                dir = Vector2.left;
-                break;
-            case AttackDirection.Right:
-                dir = Vector2.right;
-                break;
-            case AttackDirection.Up:
-                dir = Vector2.up;
-                break;
-            case AttackDirection.Down:
-                dir = Vector2.down;
-                break;
-            default:
-                dir = Vector2.down;
-                break;
+            switch (_attackSide)
+            {
+                case AttackSide.Up:
+                    collider = _triggers[1];
+                    break;
+                case AttackSide.Left:
+                    collider = _triggers[2];
+                    break;
+                case AttackSide.Right:
+                    collider = _triggers[3];
+                    break;
+                default:
+                    collider = _triggers[0];
+                    break;
+            }
+        }
+        else
+        {
+            switch (_attackSide)
+            {
+                case AttackSide.Up:
+                    collider = _triggers[0];
+                    break;
+                case AttackSide.Left:
+                    collider = _triggers[3];
+                    break;
+                case AttackSide.Right:
+                    collider = _triggers[2];
+                    break;
+                default:
+                    collider = _triggers[1];
+                    break;
+            }
         }
 
-        return dir;
-    }
-
-    //Нужный тригер для проверки столкновения с игроком
-    private Collider2D GetChosenCollider()
-    {
-        Collider2D collider;
-        switch (_attackDirection)
-        {
-            case AttackDirection.Down:
-                collider = _collidersCheckPlayerHit[0];
-                break;
-            case AttackDirection.Up:
-                collider = _collidersCheckPlayerHit[1];
-                break;
-            case AttackDirection.Left:
-                collider = _collidersCheckPlayerHit[2];
-                break;
-            case AttackDirection.Right:
-                collider = _collidersCheckPlayerHit[3];
-                break;
-            default:
-                collider = _collidersCheckPlayerHit[0];
-                break;
-        }
         return collider;
     }
 
-    private void DisableTriggers()
+    private Vector3 CurrentAttackDirection()
     {
-        foreach (var item in _collidersCheckPlayerHit)
+        Vector3 direction;
+
+        switch (_attackSide)
         {
-            item.enabled = false;
+            case AttackSide.Up:
+                direction = Vector3.up;
+                break;
+            case AttackSide.Left:
+                direction = Vector3.left;
+                break;
+            case AttackSide.Right:
+                direction = Vector3.right;
+                break;
+            default:
+                direction = Vector3.down;
+                break;
         }
-    }
 
-    //Точка куда бьет ловушка
-    private Vector3 GetSmashPoint()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(_startPoint, GetChosenDirection());
-
-        if (hit.collider == null)
-        {
-            Debug.LogWarning("Rock Head trap no find smash point because no platform another side");
-        }
-
-        return hit.point;
+        return direction;
     }
 }
