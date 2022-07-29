@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Kill()
+    public void Kill()
     {
         _playerSpawner.Spawn(0.25f);
     }

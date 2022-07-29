@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3279826509596794566}
   - component: {fileID: 4857318850046505734}
   - component: {fileID: 8246990759906016919}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: RockHead
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -260,4 +260,5 @@ MonoBehaviour:
   - {fileID: 3279826509596794566}
   - {fileID: 4857318850046505734}
   _attackSide: 0
-  _attackSpeed: 4
+  _attackSpeed: 5
+  _smashDistance: 1

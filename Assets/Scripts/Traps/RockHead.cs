@@ -7,10 +7,12 @@ public class RockHead : MonoBehaviour
     [SerializeField] private BoxCollider2D[] _triggers;
     [SerializeField] private AttackSide _attackSide;
     [SerializeField] private float _attackSpeed = 4f;
+    [SerializeField] private float _smashDistance = 0.4f;
 
     private Vector3 _currentAttackDirection;
     private Vector3 _startPosition;
     private Vector3 _smashPoint;
+    private Vector3 _rayOffset;
     private Vector3 _returnSmashPoint;
 
     private BoxCollider2D _currentTrigger;
@@ -25,6 +27,8 @@ public class RockHead : MonoBehaviour
         _reverseCurrentTrigger = CurrentTrigger(true);
 
         _currentAttackDirection = CurrentAttackDirection();
+
+        _rayOffset = _currentAttackDirection / 2.2f;
 
         _startPosition = transform.localPosition;
 
@@ -51,10 +55,10 @@ public class RockHead : MonoBehaviour
             return;
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(_startPosition, _currentAttackDirection);
-        Debug.DrawLine(_startPosition, hit.point, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(_startPosition + _rayOffset, _currentAttackDirection);
+        Debug.DrawLine(_startPosition + _rayOffset, hit.point, Color.red);
 
-        if(hit.collider == null)
+        if (hit.collider == null)
         {
             Debug.LogWarning("No have smash point. Change attack side or move trap to another point");
             return;
@@ -84,7 +88,7 @@ public class RockHead : MonoBehaviour
     {
         transform.Translate(_currentAttackDirection * Time.deltaTime * _attackSpeed);
 
-        if (Vector3.Distance(transform.localPosition, _smashPoint) < 0.8f)
+        if (Vector3.Distance(transform.localPosition, _smashPoint) < _smashDistance)
         {
             _currentTrigger.enabled = true;
 
@@ -98,7 +102,7 @@ public class RockHead : MonoBehaviour
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, _startPosition, 0.01f);
 
-            if (Vector3.Distance(transform.localPosition, _returnSmashPoint) < 0.8f)
+            if (Vector3.Distance(transform.localPosition, _returnSmashPoint) < _smashDistance)
             {
                 _reverseCurrentTrigger.enabled = true;
 
