@@ -261,4 +261,4 @@ MonoBehaviour:
   - {fileID: 4857318850046505734}
   _attackSide: 0
   _attackSpeed: 5
-  _smashDistance: 1
+  _smashDistance: 0.8

@@ -7,9 +7,9 @@ public class LaserGun : MonoBehaviour
     [SerializeField] private float _rotationDegree = 60f;
     [SerializeField] private float _rotationSpeed = 0.5f;
     [SerializeField] private bool _isRotate360;
+    [SerializeField] private GameObject _laserParticlePrefab;
 
-    [SerializeField] private ParticleSystem _laserParticle;
-
+    private ParticleSystem _laserParticle;
     private LineRenderer _lineRenderer;
     private RaycastHit2D hit;
 
@@ -17,9 +17,12 @@ public class LaserGun : MonoBehaviour
     {
         _lineRenderer = GetComponent<LineRenderer>();
 
-        _lineRenderer.startWidth = 0.05f;
+        _lineRenderer.startWidth = 0.04f;
         _lineRenderer.startColor = Color.red;
         _lineRenderer.endColor = Color.red;
+
+        GameObject particle = GameObject.Instantiate(_laserParticlePrefab, _laserParticlePrefab.transform.position, _laserParticlePrefab.transform.rotation, transform.parent);
+        _laserParticle = particle.GetComponent<ParticleSystem>();
     }
 
     private void FixedUpdate()

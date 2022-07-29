@@ -43,16 +43,10 @@ public class Gun : MonoBehaviour
 
     private IEnumerator Shooting()
     {
-        while (_isShooting)
-        {
-            GameObject.Instantiate(_bulletPrefab, transform.localPosition, transform.localRotation, transform);
+        GameObject.Instantiate(_bulletPrefab, transform.localPosition, transform.localRotation, transform);
 
-            yield return new WaitForSeconds(_bulletSpawnDelay);
+        yield return new WaitForSeconds(_bulletSpawnDelay);
 
-            _isShooting = false;
-
-            StopCoroutine(Shooting());
-        }
-
+        _isShooting = false;
     }
 }
